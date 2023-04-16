@@ -5,6 +5,7 @@ const Header = () => {
   return (
     <div className="header-wraper">
       <div className="main-info">
+        <canvas></canvas>
         <h1>Hi i'm <br /> Aswini sureddy</h1>
         <Typed className="typed-text"
         strings={["Web Design", "Web Developer", "Frontend developer"]} typeSpeed={40} backSpeed={60} loop/>
