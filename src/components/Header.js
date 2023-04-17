@@ -8,7 +8,7 @@ const Header = () => {
         <canvas></canvas>
         <h1>Hi i'm <br /> Aswini sureddy</h1>
         <Typed className="typed-text"
-        strings={["Web Design", "Web Developer", "Frontend developer"]} typeSpeed={40} backSpeed={60} loop/>
+        strings={["Fullstack Web Developer", "Web Developer", "Frontend developer"]} typeSpeed={40} backSpeed={60} loop/>
         <a href="#" className="btn-main-offer">Contact Me</a>
       </div>
     </div>

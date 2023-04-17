@@ -18,7 +18,7 @@ const Experience = () => {
          <div className="marker"></div>
          <div className="timeline-content">
             <h3>2018-2022</h3>
-            <p>Kitchen Assistent</p></div>   
+            <p>Worked at Clio</p></div>   
         </div>
          {/* - */}
         <div className="timeline-block timeline-block-right">
@@ -31,7 +31,7 @@ const Experience = () => {
         <div className="timeline-block timeline-block-left">
          <div className="marker"></div>
          <div className="timeline-content">
-            <h3>2023-untill</h3>
+            <h3>2023-Till Now</h3>
             <p> Study Cloud Compuiting at Microsoft Office</p></div>   
         </div>
     </div>
