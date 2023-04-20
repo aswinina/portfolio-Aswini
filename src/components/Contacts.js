@@ -1,43 +1,53 @@
-import React,{ useRef, useState } from "react";
+import React,{ useRef,useState } from "react";
 import emailjs from '@emailjs/browser';
-import { useForm } from "react-hook-form";
-
-
+import { useForm } from 'react-hook-form';
 
 const Contacts = () => {
-  const [successMessage,setSuccessMessage] = useState("");
-    const {register, handleSubmit,formState: { errors }} = useForm();  
-    const form = useRef();
-        const serviceid = "service_ID";
-        const templateid = "template_ID";
-        const public_key = "yVSyzpKiMduraSBwc";
-        const onSubmit = (data, r) =>{
-            sendEmail(
-              serviceid,
-              templateid,
-              {
-                name:data.name,
-                phone:data.phone,
-                email:data.email,
-                subject:data.subject,
-                description: data.description
-              },
-              public_key
-              )
-              r.target.reset();
-        }
-        const sendEmail = (serviceid, templateid, variables, public_key) => {
-        emailjs.send(serviceid, templateid, variables, public_key)
-          .then(() => {
-            setSuccessMessage("form sent successfully! I'll contact you as soon as possibule.");
-          }).catch(err => console.error(`something went wrong ${err}`));
-      };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const form = useRef();
+  const serviceid = "service_ID";
+  const templateid = "template_ID";
+  const public_key = "yVSyzpKiMduraSBwc";
+  const [emailSent, setEmailSent] = useState(false);
+
+  const sendEmail = (data) => {
+    const { name, phone, email, subject, description } = data;
+
+    const templateParams = {
+      from_name: name,
+      from_phone: phone,
+      from_email: email,
+      subject: subject,
+      message: description,
+    };
+
+    emailjs
+      .send(serviceid, templateid, templateParams, public_key)
+      .then((result) => {
+        console.log(result.text);
+        setEmailSent(true);
+      })
+      .catch((error) => {
+        console.log(error.text);
+      });
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+    sendEmail(data);
+    reset();
+  };
   return (
     <div className="contacts">
         <div className="text-center">
         <h1>contact me</h1>
         <p>please fill out the form and describe your project needs i'll contact you as soon as possible.</p>
-        <span className="success-message">{successMessage}</span>
+        <span>{emailSent}</span>
         </div>
         <div className="container">
         <form ref={form} onSubmit={handleSubmit(onSubmit)}>
@@ -50,20 +60,12 @@ const Contacts = () => {
                     className="form-control"
                     placeholder="name"
                     name="name"
-                    ref = {
-                      register({
-                        required:"please enter your name",
-                        maxLength:{
-                          value:20,
-                          message:"please enter a name with fewer then 20 characters"
-                        }
-                      })
-                    }
+                    {...register('name', { required: true })}
                     />
                     <div className="line"></div>
+                    {errors.name && <span>This field is required</span>}
                     </div>
-                    <span className="error-message">
-                      {errors.name && errors.name.message}</span>
+                    
                     {/* -PHONE INPUT  */}
                     <div className="text-center">
                     <input
@@ -71,16 +73,13 @@ const Contacts = () => {
                     className="form-control"
                     placeholder="phone name"
                     name="phone"
-                    ref = {
-                      register({
-                        required:"please add your phone number"
-                      })
-                    }
+                    {...register('phone', { required: true })} 
                     />
+                     
                     <div className="line"></div>
+                    {errors.name && <span>This field is required</span>}
                     </div>
-                    <span className="error-message">
-                      {errors.phone && errors.phone.message}</span>
+                    
                      {/* -EMAIL INPUT  */}
                      <div className="text-center">
                      <input          
@@ -88,17 +87,11 @@ const Contacts = () => {
                     className="form-control"
                     placeholder="Email"
                     name="email"
-                    ref = {
-                      register({
-                        required:"please provide your email",
-                        pattern:{
-                          value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
-                          message:"invalid Email"
-                        }
-                      })
-                    }
+                    {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
                     />
                     <div className="line"></div>
+                    {errors.email && errors.email.type === 'required' && <span>This field is required</span>}
+        {errors.email && errors.email.type === 'pattern' && <span>Please enter a valid email address</span>}
                     </div>
                     {/* -Subject INPUT  */}
                     <div className="text-center">
@@ -107,16 +100,12 @@ const Contacts = () => {
                     className="form-control"
                     placeholder="Subject"
                     name="subject"
-                    ref = {
-                      register({
-                        required:"OOPS! your forget to the subject! "
-                      })
-                    }
+                    {...register('subject', { required: true })} 
                     />
                     <div className="line"></div>
+                    {errors.name && <span>This field is required</span>}
                     </div>
-                    <span className="error-message">
-                      {errors.subject && errors.subject.message}</span>
+                    
                 </div>
                 <div className="col-md-6 col-xs-12">
                      {/* -DESCRAPTION  */}
@@ -124,18 +113,14 @@ const Contacts = () => {
                      <textarea
                      type="text"
                     className="form-control"
-                    placeholder="please describe shortly you project....."
+                    placeholder="please describe shortly your project....."
                     name="description"
-                    ref = {
-                      register({
-                        required:"plaese describe shortly your project needs... "
-                      })
-                    }
+                    {...register('description', { required: true })} 
                     ></textarea>
                     <div className="line"></div>
+                    {errors.name && <span>This field is required</span>}
                     </div>
-                    <span className="error-message">
-                      {errors.description && errors.description.message}</span>
+                    
                     <button className="btn-main-offer contact-btn" type="submit">contact me</button>
                 </div>
             </div>
