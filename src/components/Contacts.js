@@ -43,7 +43,7 @@ const Contacts = () => {
     reset();
   };
   return (
-    <div className="contacts">
+    <div id="contacts" className="contacts">
         <div className="text-center">
         <h1>contact me</h1>
         <p>please fill out the form and describe your project needs i'll contact you as soon as possible.</p>
