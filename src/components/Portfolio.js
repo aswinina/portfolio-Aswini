@@ -130,7 +130,7 @@ erat, </p>
              fadeInSpeed:500
     }
   return (
-    <div className="portfolio-wrapper">
+    <div id="portfolio" className="portfolio-wrapper">
       <div className="container">
         <h1 className="text-uppercase text-center py-5">portfolio</h1>
         <div className="image-box-wrapper">
@@ -139,12 +139,6 @@ erat, </p>
             <div className="overflow"></div>
             <FontAwesomeIcon className="portfolio-icon" icon={faSearchPlus} />
         </div> 
-        {/*  -  */}
-        <div className="portfolio-image-box" onClick={openPopupboxOffice}>
-            <img className="portfolio-image" src={Office} alt="office store website project" />
-            <div className="overflow"></div>
-            <FontAwesomeIcon className="portfolio-icon" icon={faSearchPlus} />
-        </div>
         {/*  -  */}
         
         <div className="portfolio-image-box" onClick={openPopupboxDictionary}>

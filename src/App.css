@@ -55,7 +55,7 @@ border-top: 0.1875rem solid var(--primary-dark);
     width: 7rem;
   }
 }
-.navbar-nav li a.active, .navbar-nav li a.active:focus{
+.navbar-nav li a.active, .navbar-nav li a:focus{
   border-top: 0.1875rem solid var(--primary-orange);
 }
 .navbar-nav li a:hover{
@@ -69,7 +69,7 @@ border-top: 0.1875rem solid var(--primary-dark);
   background: url(wall-computer.jpg) no-repeat;
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  height: 100vh;
 }
 
 .main-info{
@@ -356,6 +356,9 @@ transform: translate(-50%,-50%);
   cursor: pointer;
 
 }
+.popupbox-wrapper{
+  margin-top: 5rem;
+}
 
 /*------------- overflow box  -----------------------*/
 
@@ -378,7 +381,9 @@ color: var(--primary-red);
   .portflio-image-popupbox{
     width: 100%;
   }
-  
+  .image-box-wrapper{
+    width: 100%;
+  }
 }
 
 
@@ -494,4 +499,27 @@ textarea.form-control{
   .contacts p{
     padding: 0 0.4rem;
   }
+}
+
+/************************* Footer Component ************************/
+
+.footer {
+  background: var(--primary-black);
+  color:var(--primary-dark-grey) ;
+  padding: 3rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color:var(--primary-dark-grey);
+}
+
+.footer a:hover {
+  text-decoration: none;
+  color: var(--primary-orange);
+  cursor: pointer;
+}
+
+.footer p{
+  margin-bottom: 0;
 }

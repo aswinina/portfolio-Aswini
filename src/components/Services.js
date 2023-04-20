@@ -4,7 +4,7 @@ import { faFacebookF, faGoogle} from "@fortawesome/free-brands-svg-icons";
 import { faDesktop, faFileCode} from "@fortawesome/free-solid-svg-icons";
 const Services = () => {
   return (
-    <div className="services">
+    <div id="services" className="services">
         <h1 className="py-5"> services </h1>
             <div className="container">
                 <div className="row">
